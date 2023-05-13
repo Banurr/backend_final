@@ -19,8 +19,11 @@ from django.urls import path
 
 import shop
 from shop import views
+from shop.views import upload_media
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', shop.views.main)
+    path('', shop.views.main),
+    path('upload/', upload_media, name='upload_media'),
+
 ]
