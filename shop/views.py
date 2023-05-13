@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from .form import MediaFileForm
+from .models import Product
 
 
 
-
-
+def allofthem(request):
+    user = request.user
+    products = Product.objects.all()
+    content = {"all": products, "user": user}
+    return render(request,'allproducts.html',content)
 
 # Create your views here.
 def upload_media(request):
@@ -20,4 +24,5 @@ def upload_media(request):
 
 
 def main(request):
-    return render(request, 'base.html')
+    user = request.user
+    return render(request, 'base.html',{"user":user})

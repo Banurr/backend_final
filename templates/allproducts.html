@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block main %}
+    {% load static %}
+    <div style="width: 80% ; margin: auto auto;border: 4px solid black;display: flex;justify-content: space-evenly;margin-top: 100px">
+    {% for i in all %}
+        <div class="card" style="width: 18rem;border: 3px solid black">
+  <img class="card-img-top" src="{% static 'img/groceries.png' %}" alt="Card image cap">
+  <div class="card-body" >
+    <h4 class="card-title">{{ i.name }}</h4>
+    <p class="card-text">{{ i.description }}</p>
+      <p class="card-text"><b>{{ i.price }} ₸</b></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+    {% endfor %}
+    </div>
+{% endblock %}
