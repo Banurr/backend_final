@@ -8,5 +8,35 @@
     <script type="text/javascript"  src="{% static 'js/bootstrap.bundle.js' %}"></script>
 </head>
 <body>
+{% load static %}
+ <nav class="navbar navbar-expand-lg " style="background-color: azure ">
+        <div class="navbar-header">
+            <img src="{% static 'img/sticker.webp' %}" style="width: 80px;height: 70px;margin-left: 20px">
+        </div>
+            <h4 style="margin : 0 0 0 20px;width : 120px"> Mugiwara Shop </h4>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Manga</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About us</a>
+                </li>
+            </ul>
+            <form class="form-check-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+            <form class="form-check-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+        </div>
+    </nav>
 </body>
 </html>
