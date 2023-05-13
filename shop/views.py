@@ -2,6 +2,10 @@ from django.shortcuts import render
 from .form import MediaFileForm
 
 
+
+
+
+
 # Create your views here.
 def upload_media(request):
     if request.method == 'POST':
