@@ -26,3 +26,7 @@ def upload_media(request):
 def main(request):
     user = request.user
     return render(request, 'base.html',{"user":user})
+
+def about_us(request):
+    user = request.user
+    return render(request,'about_us.html',{"user":user})
