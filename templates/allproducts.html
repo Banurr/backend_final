@@ -9,7 +9,7 @@
     {% for i in all %}
         <div class="card" style="height : 100%;width: 90%;border: 3px solid black">
         {% if i.image %}
-            <img class="card-img-top" style="height: 60%" src="{{ i.image.url }}" alt="Card image cap">
+            <a href="{% url 'currentp' i.id %}"><img class="card-img-top"  src="{{ i.image.url }}" alt="Card image cap"></a>
         {% endif %}
 
   <div class="card-body" >

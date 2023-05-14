@@ -1,20 +1,31 @@
 {% extends 'base.html' %}
 {% block main %}
-<h2>This is {{ product.name }}</h2>
-<h2>price is {{ product.price }}</h2>
-    {% if product.image %}
-    <img style="width: 100px;height: 100px" alt="nigga" src="{{ product.image.url }}">
-    {% endif %}
-<h2>This is {{ product.name }}</h2>
-<h2>price is {{ product.price }} ₸</h2>
-<h2>category is {{ product.category }}</h2>
-<h2>text is {{ product.description }}</h2>
-<div>
-    {% for c in comment %}
-        <ul>text is : {{ c.text }}</ul>
-        <ul>rate is : {{ c.rating }}</ul>
-        <ul>when created : {{ c.create }}</ul>
-        <ul>when modified : {{ c.modify }}</ul>
-    {% endfor %}
-{% endblock %}
+    <div class="container mt-5 mb-5 w-100">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-9 w-50">
+            <div class="row p-1 bg-white border rounded ">
+                {% if product.image  %}
+                <div class="col-md-3 mt-2"><img class="img-fluid img-responsive rounded product-image" src="{{ product.image.url }}"></div>
+                {% endif %}
+                <div class="col-md-6 mt-1">
+                    <h1>{{ product.name }}</h1>
+                    <div class="d-flex flex-row">
+                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>Amount : {{ product.amount }}</span>
+                    </div>
+
+                    <div class="mt-1 mb-1 spec-1"><span>Category : {{ product.category }}</span>
+                    <p class="text-justify text-truncate para mb-0">Description : {{ product.description }}<br><br></p>
+                </div>
+                <div class="align-items-center align-content-center col-md-7 border-left mt-1">
+                    <div class="d-flex flex-row align-items-center">
+                        <h3 class="mr-1">{{ product.price }} ₸</h3>
+                    </div>
+                    <h6 class="text-success">Free shipping</h6>
+                    <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}
+

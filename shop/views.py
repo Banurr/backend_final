@@ -19,6 +19,7 @@ def allofthem(request):
     content = {"all": products, "user": user, "categories": categories}
     return render(request, 'allproducts.html', content)
 
+
 # Create your views here.
 def upload_media(request):
     if request.method == 'POST':
@@ -35,25 +36,18 @@ def upload_media(request):
 def main(request):
     user = request.user
     categories = Category.objects.all()
-    items = []
-    r = 0
-    for i in range(0, len(categories)):
-        items.append(i)
-    print(categories)
-    # print(items)
-    content = {"user": user, "categories": categories, "items": items}
+    content = {"user": user, "categories": categories}
     return render(request, 'base.html', content)
 
 
 def about_us(request):
     categories = Category.objects.all()
     user = request.user
+    content = {"user": user, "categories": categories}
+    return render(request, 'about_us.html', content)
 
-    return render(request, 'about_us.html', {"user": user})
 
-
-
-def current_product(request, idx):
+def current_product(request, idx=1):
     categories = Category.objects.all()
     user = request.user
     product = get_object_or_404(Product, id=idx)
@@ -61,5 +55,3 @@ def current_product(request, idx):
     print(product)
     content = {"product": product, "comment": comment, "user": user, "categories": categories}
     return render(request, 'current_product.html', content)
-
-
