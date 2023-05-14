@@ -25,11 +25,17 @@ def upload_media(request):
 
 def main(request):
     user = request.user
-    return render(request, 'base.html', {"user": user})
+    categories = Category.objects.all()
+    items = []
+    r = 0
+    for i in range(0, len(categories)):
+        items.append(i)
+    print(categories)
+    # print(items)
+    content = {"user": user, "categories": categories,"items": items}
+    return render(request, 'base.html', content)
 
 
 def about_us(request):
     user = request.user
-    categories = Category.objects.all()
-    content = {"user": user, "categories": categories}
-    return render(request, 'about_us.html', content)
+    return render(request, 'about_us.html', user)
