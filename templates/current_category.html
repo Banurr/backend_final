@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% block main %}
+    {% if category.image %}
+        <img alt="nege" src="{{ category.image.url }}">
+    {% endif %}
+    <h1>{{ category.name }}</h1>
     {% load static %}
     <div style="display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 30px 10px;
         grid-auto-flow: row;margin: 100px auto auto;width: 70%;justify-items: center;
   align-items: center;">
-    {% for i in all %}
+    {% for i in products %}
         <div class="card" style="height : 100%;width: 90%;border: 3px solid black">
         {% if i.image %}
             <img class="card-img-top" style="height: 60%" src="{{ i.image.url }}" alt="Card image cap">
