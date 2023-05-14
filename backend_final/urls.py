@@ -28,11 +28,19 @@ from django.contrib import auth
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', shop.views.main, name='home'),
+<<<<<<< HEAD
+    path('about_us', shop.views.about_us,name='about'),
+    path('products/', include('shop.urls')),
+=======
+<<<<<<< HEAD
     path('about_us', shop.views.about_us, name='about'),
     path('category/<int:idx>', shop.views.current_category, name='currentc'),
     path('products/', include('shop.urls')),
+=======
     path('about_us',shop.views.about_us,name='about'),
     path('products',shop.views.allofthem, name='all'),
+>>>>>>> origin/main
+>>>>>>> 9830b4f8d5a969755270e04ece85d31c6bb6807d
     path('upload/', upload_media, name='upload_media'),
     path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
     path('accounts/profile/', backend_final.views.profile, name='profile'),

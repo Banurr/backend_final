@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block main %}
+<<<<<<< HEAD
+<h2>This is {{ product.name }}</h2>
+<h2>price is {{ product.price }}</h2>
+=======
     {% if product.image %}
     <img style="width: 100px;height: 100px" alt="nigga" src="{{ product.image.url }}">
     {% endif %}
 <h2>This is {{ product.name }}</h2>
 <h2>price is {{ product.price }} ₸</h2>
+>>>>>>> 9830b4f8d5a969755270e04ece85d31c6bb6807d
 <h2>category is {{ product.category }}</h2>
 <h2>text is {{ product.description }}</h2>
 <div>
