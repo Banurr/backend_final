@@ -6,7 +6,7 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    image = models.ImageField(null=True, blank=True, upload_to='media/images/')
+    image = models.ImageField(null=True, blank=True, upload_to='categ/')
 
     def __str__(self):
         return self.name
@@ -18,7 +18,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.IntegerField()
     amount = models.IntegerField()
-    image = models.ImageField(null=True, blank=True, upload_to='media/prod/')
+    image = models.ImageField(null=True, blank=True, upload_to='prod/')
 
     def __str__(self):
         return self.name
