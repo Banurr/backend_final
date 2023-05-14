@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .form import MediaFileForm
-from .models import Product
+from .models import Product,Category
 
 
 
@@ -25,8 +25,11 @@ def upload_media(request):
 
 def main(request):
     user = request.user
-    return render(request, 'base.html',{"user":user})
+    return render(request, 'base.html', {"user": user})
+
 
 def about_us(request):
     user = request.user
-    return render(request,'about_us.html',{"user":user})
+    categories = Category.objects.all()
+    content = {"user": user, "categories": categories}
+    return render(request, 'about_us.html', content)

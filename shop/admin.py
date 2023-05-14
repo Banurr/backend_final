@@ -5,7 +5,7 @@ from .models import Category, Product, Comment
 # Register your models here.
 
 class ShopAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'price', 'category')
+    list_display = ('name', 'description', 'price', 'category','amount')
     search_fields = ('name', 'price')
 
 
