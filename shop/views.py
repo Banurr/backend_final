@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from .form import MediaFileForm
-from .models import Product, Category, Comment
+from .models import Product,Category
+
 
 
 def current_category(request, idx=1):
@@ -15,10 +16,15 @@ def current_category(request, idx=1):
 def allofthem(request):
     user = request.user
     products = Product.objects.all()
+<<<<<<< HEAD
     categories = Category.objects.all()
     content = {"all": products, "user": user, "categories": categories}
     return render(request, 'allproducts.html', content)
 
+=======
+    content = {"all": products, "user": user}
+    return render(request,'allproducts.html',content)
+>>>>>>> origin/main
 
 # Create your views here.
 def upload_media(request):
@@ -42,13 +48,14 @@ def main(request):
         items.append(i)
     print(categories)
     # print(items)
-    content = {"user": user, "categories": categories, "items": items}
+    content = {"user": user, "categories": categories,"items": items}
     return render(request, 'base.html', content)
 
 
 def about_us(request):
     categories = Category.objects.all()
     user = request.user
+<<<<<<< HEAD
     return render(request, 'about_us.html', {"user": user, "categories": categories})
 
 
@@ -60,3 +67,6 @@ def current_product(request, idx):
     print(product)
     content = {"product": product, "comment": comment, "user": user, "categories": categories}
     return render(request, 'current_product.html', content)
+=======
+    return render(request, 'about_us.html', {"user":user})
+>>>>>>> origin/main

@@ -7,6 +7,7 @@
         grid-auto-flow: row;margin: 100px auto auto;width: 70%;justify-items: center;
   align-items: center;">
     {% for i in all %}
+<<<<<<< HEAD
         <div class="card" style="height : 100%;width: 90%;border: 3px solid black">
         {% if i.image %}
             <img class="card-img-top" style="height: 60%" src="{{ i.image.url }}" alt="Card image cap">
@@ -17,6 +18,15 @@
       <h5 class="card-text">{{ i.category }}</h5>
       <h4 style="margin-top:20px" class="card-text"><b>{{ i.price }} ₸</b></h4>
     <a href="" class="btn btn-primary">Go somewhere</a>
+=======
+        <div class="card" style="height : 100%;width: 80%;border: 3px solid black">
+  <img class="card-img-top" style="height: 60%" src="{% static 'img/groceries.png' %}" alt="Card image cap">
+  <div class="card-body" >
+    <h4 class="card-title">{{ i.name }}</h4>
+    <p class="card-text">{{ i.description }}</p>
+      <p class="card-text"><b>{{ i.price }} ₸</b></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+>>>>>>> origin/main
   </div>
 </div>
     {% endfor %}
