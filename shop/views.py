@@ -38,4 +38,4 @@ def main(request):
 
 def about_us(request):
     user = request.user
-    return render(request, 'about_us.html', user)
+    return render(request, 'about_us.html', {"user":user})
