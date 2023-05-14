@@ -14,9 +14,6 @@ from django.urls import path
 urlpatterns = [
     path('', shop.views.allofthem, name='all'),
 
-    path('<int:idx>', shop.views.current_product, name='current'),
-    ]
-
     path('<int:idx>', shop.views.current_product, name='currentp'),
     ]
 
