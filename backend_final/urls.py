@@ -27,8 +27,8 @@ from django.contrib import auth
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', shop.views.main, name='home'),
-    path('about_us',shop.views.about_us,name='about'),
-    path('products',shop.views.allofthem, name='all'),
+    path('about_us', shop.views.about_us,name='about'),
+    path('products/', include('shop.urls')),
     path('upload/', upload_media, name='upload_media'),
     path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
     path('accounts/profile/', backend_final.views.profile, name='profile'),

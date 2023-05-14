@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block main %}
+<h2>This is {{ product.name }}</h2>
+<h2>price is {{ product.price }}</h2>
+<h2>category is {{ product.category }}</h2>
+<h2>text is {{ product.description }}</h2>
+<div>
+    {% for c in comment %}
+        <ul>text is : {{ c.text }}</ul>
+        <ul>rate is : {{ c.rating }}</ul>
+        <ul>when created : {{ c.create }}</ul>
+        <ul>when modified : {{ c.modify }}</ul>
+    {% endfor %}
+{% endblock %}
+</div>
