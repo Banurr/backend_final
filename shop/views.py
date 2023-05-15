@@ -70,6 +70,7 @@ def register(request):
 
             user = form.save()
             profile = UserProfile.objects.create(user=user,image=form.cleaned_data['image'])
+            profile.save()
             return redirect('login')  # Replace 'home' with the URL name of your home page
 
     else:
