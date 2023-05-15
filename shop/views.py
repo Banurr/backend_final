@@ -127,17 +127,10 @@ def logout_view(request):
 
 
 def profile_view(request):
-    user=request.user
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = ProfileForm(instance=request.user.userprofile)
-        profile = UserProfile.objects.get(user=user)
-        categories = Category.objects.all()
-        content = {"user" : user, "form":form , "profile":profile,"categories":categories}
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    categories = Category.objects.all()
+    content = {"user" : user , "profile":profile,"categories":categories}
     return render(request, 'profile.html', content)
 
 def search(request):
