@@ -1,12 +1,72 @@
 {% extends 'base.html' %}
 {% block main %}
     {% load static %}
+    {% block rrr %}
+        {% endblock %}
+    <section class="vh-75" >
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-9">
 
-    <form method="get">
-    {% csrf_token %}
-        {{form.as_p}}
-    <input type="submit" value="Submit">
-    </form>
+        <h1 class="text-white mb-4" style="color: black">Filters</h1>
+
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body">
+              <form method="get">
+                   {% csrf_token %}
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Minimum Price</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.minprice }}
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+               <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Maximum Price</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.maxprice }}
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+               <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Sort by</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.Sortby }}
+
+              </div>
+            </div>
+            <hr class="mx-n3">
+            <div class="px-5 py-4 vh-50">
+              <button type="submit" class="btn btn-primary btn-lg">Apply filters</button>
+            </div>
+              </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+    {% if all %}
     <div style="display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 30px 10px;
@@ -27,4 +87,8 @@
 </div>
     {% endfor %}
     </div>
+{% else %}
+        <h1 style="margin:100px 0 0  500px">NO data found ((((</h1>
+    {% endif %}
 {% endblock %}
+

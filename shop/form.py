@@ -14,7 +14,7 @@ class MediaFileForm(forms.ModelForm):
 class FilterForm(forms.Form):
     minprice = forms.IntegerField(required=False, min_value=0)
     maxprice = forms.IntegerField(required=False, min_value=0)
-    Sortby = forms.ChoiceField(required=False, choices=(("Ascen", "Ascen"), ("Desc", "Desc"),("Nameup", "Nameup"), ("NameDown", "NameDown")))
+    Sortby = forms.ChoiceField(required=False, choices=(("Ascen", "Lowest Price"), ("Desc", "Highest Price"),("Nameup", "Product name ascending"), ("NameDown", "Product name descending")))
 
 
 class RegistrationForm(UserCreationForm):
