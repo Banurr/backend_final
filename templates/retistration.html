@@ -4,6 +4,7 @@
   <h2>User Registration</h2>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
+      <div style="display: block;border:1px solid black;width:300px">
     <label class="input">
                     Username
                     {{ form.username }}
@@ -34,6 +35,7 @@
                 </label>
 
       {{ form.image }}
+      </div>
     <div class="form-group">
       <label for="id_image">Profile Picture</label>
     </div>
