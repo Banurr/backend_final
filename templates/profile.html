@@ -13,9 +13,12 @@
                                                         <div class="col-sm-4 bg-c-lite-green user-profile">
                                                             <div class="card-block text-center text-white">
                                                                 <div class="m-b-25">
-                                                                    <img style="width: 50%" src="{{ profile.image.url }}" class="img-radius" alt="User-Profile-Image">
+                                                                    {% if profile.image %}
+                                                                       <img style="width: 50%" src="{{ profile.image.url }}" class="img-radius" alt="User-Profile-Image">
+                                                                    {% else %}
+                                                                        <img style="width: 50%" src="{% static 'img/account.png' %}" class="img-radius" alt="User-Profile-Image">
+                                                                    {% endif %}
                                                                 </div>
-                                                                <h4 class="f-w-600">{{ form.image }}</h4>
                                                                 <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                                             </div>
                                                         </div>
