@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, get_object_or_404, redirect
-from .form import MediaFileForm, RegistrationForm, ProfileForm, LoginForm
+from .form import MediaFileForm, RegistrationForm, ProfileForm, LoginForm,FilterForm
 from .models import Product, Category, Comment, UserProfile
 
 def index(request):
@@ -20,7 +20,28 @@ def allofthem(request):
     user = request.user
     products = Product.objects.all()
     categories = Category.objects.all()
-    content = {"all": products, "user": user, "categories": categories}
+    curmin = 0
+    curmax = 100000
+    form = FilterForm(request.GET)
+    arr = []
+    res = []
+    if form.is_valid():
+        curmin = form.cleaned_data['minprice'] or 0
+        curmax = form.cleaned_data['maxprice'] or 1000000
+        filt = form.cleaned_data['Sortby'] or 'Ascen'
+        for i in products:
+            if curmin <= i.price <= curmax:
+                arr.append((i, i.price,i.name))
+        if filt == 'Ascen':
+            arr.sort(key=lambda a: a[1], reverse=False)
+        elif filt == 'Desc':
+            arr.sort(key=lambda a: a[1], reverse=True)
+        elif filt == 'Nameup':
+            arr.sort(key=lambda a: a[2], reverse=False)
+        elif filt == 'NameDown':
+            arr.sort(key=lambda a: a[2], reverse=True)
+        res = [p[0] for p in arr]
+    content = {"all": res, "user": user, "categories": categories,"form":form}
     return render(request, 'allproducts.html', content)
 
 

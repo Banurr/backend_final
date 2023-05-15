@@ -11,6 +11,12 @@ class MediaFileForm(forms.ModelForm):
         fields = ('name', 'image')
 
 
+class FilterForm(forms.Form):
+    minprice = forms.IntegerField(required=False, min_value=0)
+    maxprice = forms.IntegerField(required=False, min_value=0)
+    Sortby = forms.ChoiceField(required=False, choices=(("Ascen", "Ascen"), ("Desc", "Desc"),("Nameup", "Nameup"), ("NameDown", "NameDown")))
+
+
 class RegistrationForm(UserCreationForm):
 
     class Meta:
