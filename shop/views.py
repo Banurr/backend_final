@@ -166,3 +166,48 @@ def search(request):
         "categories": categories
     }
     return render(request, 'Search_item.html', content)
+
+
+def addbasket(request, idx):
+    basket_list = request.session.get('basket', [])
+    basket_list.append(idx)
+    request.session['basket'] = basket_list
+    return redirect('/')
+
+def korzina(request):
+    user = request.user
+    categories = Category.objects.all()
+    count=0
+    total_price=0;
+    if request.session['basket']:
+        product_list=[]
+        for id in request.session['basket']:
+            product=Product.objects.filter(id=id)
+            count=count+1
+            for i in product:
+                 total_price=total_price+i.price
+                 product_list.append(i)
+
+        content = {
+            'all': product_list,
+            'count':count,
+            'total':total_price,
+            "user": user,
+            "categories": categories
+        }
+        return render(request,'korzina.html',content)
+    else:
+        return redirect('/')
+
+
+def payment(request,total):
+    user=request.user
+    profile=UserProfile.objects.get(user=user)
+    if profile.money<total:
+        profile.save()
+        return redirect('/')
+    else:
+        profile.money=profile.money-total
+        profile.save();
+        request.session['basket']=[]
+        return redirect('/')
