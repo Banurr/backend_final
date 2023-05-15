@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, get_object_or_404, redirect
 from .form import MediaFileForm, RegistrationForm, ProfileForm, LoginForm,FilterForm
-from .models import Product, Category, Comment, UserProfile
+from .models import Product, Category, UserProfile
 
 def index(request):
     user = request.user
@@ -95,9 +95,8 @@ def current_product(request, idx=1):
     categories = Category.objects.all()
     user = request.user
     product = get_object_or_404(Product, id=idx)
-    comment = Comment.objects.filter(product=product)
     print(product)
-    content = {"product": product, "comment": comment, "user": user, "categories": categories}
+    content = {"product": product,"user": user, "categories": categories}
     return render(request, 'current_product.html', content)
 
 
@@ -122,6 +121,7 @@ def register(request):
 def login_view(request):
     form = LoginForm()
     user = request.user
+    categories = Category.objects.all()
     if request.method == 'POST':
             username = request.POST['username']
             password = request.POST['password']
@@ -130,14 +130,13 @@ def login_view(request):
             print(user)
             if user is not None:
                 login(request, user)
-                content = {"user":user}
-                return redirect('/',content)
+                return redirect('/')
             else:
                 messages.info(request, 'Email or Username is incorrect!')
     else:
         form = LoginForm()
-
-    return render(request, 'login.html', {'form': form})
+    content = {"user": user, 'form':form, "categories": categories}
+    return render(request, 'login.html', content)
 
 
 def logout_view(request):
@@ -179,7 +178,7 @@ def korzina(request):
     categories = Category.objects.all()
     count=0
     total_price=0;
-    if request.session['basket']:
+    if request.session.get('basket'):
         product_list=[]
         for id in request.session['basket']:
             product=Product.objects.filter(id=id)

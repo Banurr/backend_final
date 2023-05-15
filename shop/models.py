@@ -25,18 +25,6 @@ class Product(models.Model):
         return self.name
 
 
-class Comment(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    text = models.CharField(max_length=255)
-    rating = models.IntegerField()
-    create = models.DateTimeField(auto_now=True)
-    modify = models.DateTimeField(auto_now_add=True)
-    creator_id = models.ForeignKey(auth.get_user_model(), on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.text
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='profile_images/', blank=True)
