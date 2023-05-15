@@ -21,7 +21,7 @@ from django.urls import path, include
 import backend_final
 import shop
 from shop import views
-from shop.views import upload_media, register, login_view, logout_view, profile_view, search,addbasket,korzina
+from shop.views import upload_media, register, login_view, logout_view, profile_view, search,addbasket,korzina,payment
 from backend_final import views, settings
 from django.contrib import auth
 
@@ -38,7 +38,8 @@ urlpatterns = [
     path('profile/', profile_view, name='profile'),
     path('search/', search,name='search'),
     path('addbasket/<int:idx>', addbasket,name='addbasket'),
-    path('korzina/', korzina,name='korzina')
+    path('korzina/', korzina,name='korzina'),
+    path('pay/<int:total>',payment,name='pay'),
 
 ]
 if settings.DEBUG:

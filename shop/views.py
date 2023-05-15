@@ -180,3 +180,15 @@ def korzina(request):
     else:
         return redirect('/')
 
+
+def payment(request,total):
+    user=request.user
+    profile=UserProfile.objects.get(user=user)
+    if profile.money<total:
+        profile.save()
+        return redirect('/')
+    else:
+        profile.money=profile.money-total
+        profile.save();
+        request.session['basket']=[]
+        return redirect('/')
