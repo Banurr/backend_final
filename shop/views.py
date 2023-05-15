@@ -4,7 +4,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .form import MediaFileForm, RegistrationForm, ProfileForm, LoginForm
 from .models import Product, Category, Comment, UserProfile
 
-
+def index(request):
+    user = request.user
+    return render(request, 'base.html', {'user': user})
 def current_category(request, idx=1):
     categories = Category.objects.all()
     category = get_object_or_404(Category, id=idx)
@@ -78,6 +80,7 @@ def register(request):
 
 def login_view(request):
     form = LoginForm()
+    user = request.user
     if request.method == 'POST':
             username = request.POST['username']
             password = request.POST['password']
@@ -86,7 +89,8 @@ def login_view(request):
             print(user)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                content = {"user":user}
+                return redirect('/',content)
             else:
                 messages.info(request, 'Email or Username is incorrect!')
     else:
@@ -101,6 +105,7 @@ def logout_view(request):
 
 
 def profile_view(request):
+    user=request.user
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         if form.is_valid():
@@ -108,5 +113,6 @@ def profile_view(request):
             return redirect('profile')
     else:
         form = ProfileForm(instance=request.user.userprofile)
-
-    return render(request, 'profile.html', {'form': form})
+        profile=UserProfile(request.POST);
+        content = {"user":user,"form":form,"profilr":profile}
+    return render(request, 'profile.html', content)
