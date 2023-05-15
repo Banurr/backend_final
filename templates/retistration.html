@@ -1,42 +1,123 @@
 {% extends 'base.html' %}
 
 {% block main %}
-  <h2>User Registration</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label class="input">
-                    Username
-                    {{ form.username }}
-                </label>
-      <label class="input">
-                    First Name
-                    {{ form.first_name }}
-                </label>
+ <section class="vh-100" >
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-9">
 
-                <label class="input">
-                    Last Name
-                    {{ form.last_name }}
-                </label>
+        <h1 class="text-white mb-4" style="color: black">Registration</h1>
 
-<label class="input">
-                    Email
-                    {{ form.email }}
-                </label>
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body">
 
-                <label class="input">
-                    Password
-                    {{ form.password1 }}
-                </label>
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
 
-                <label class="input">
-                    Confirm Password
-                    {{ form.password2 }}
-                </label>
+                <h6 class="mb-0">Username</h6>
 
-      {{ form.image }}
-    <div class="form-group">
-      <label for="id_image">Profile Picture</label>
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.username }}
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+               <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">First Name</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.first_name }}
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+               <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Last Name</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.last_name }}
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Email address</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.email }}
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+              <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Password</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.password1 }}
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+              <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Confirm password</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                {{ form.password2 }}
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Upload Image</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+                  {{ form.image }}
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+
+            <div class="px-5 py-4">
+              <button type="submit" class="btn btn-primary btn-lg">Send application</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-  </form>
+  </div>
+</section>
 {% endblock %}

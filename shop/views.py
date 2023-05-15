@@ -116,3 +116,34 @@ def profile_view(request):
         profile=UserProfile(request.POST);
         content = {"user":user,"form":form,"profilr":profile}
     return render(request, 'profile.html', content)
+
+def book_search(request):
+    search_text = request.GET.get("search", "")
+    form = SearchForm(request.GET)
+    booki = set()
+    if form.is_valid() and form.cleaned_data["search"]:
+        search = form.cleaned_data["search"]
+        search_in = form.cleaned_data.get("search_in") or "title"
+        if search_in == "title":
+            booki = Book.objects.filter(title__icontains=search)
+        else:
+            first_name_contributor = Contributor.objects.filter(first_names__icontains=search)
+
+            for contributor in first_name_contributor:
+                for book in contributor.book_set.all():
+                    booki.add(book)
+
+            last_name_contributor = Contributor.objects.filter(last_names__icontains=search)
+
+            for contributor in last_name_contributor:
+                for book in contributor.book_set().all():
+                    booki.add(book)
+
+        if request.user.is_authenticated:
+            search_history.append([search, search_in])
+            request.session['search_history'] = search_history
+        elif search_history:
+            initial = dict(search=search_text, search_in=search_history[-1][0])
+            form = SearchForm(initial=initial)
+
+    return render(request, "search_results.html", {"form": form, "search_text": search_text, "books": booki})
