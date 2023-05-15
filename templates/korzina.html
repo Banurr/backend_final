@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block main %}
+    <section class="vh-80" >
+  <div class="container h-80">
+    <div class="row d-flex justify-content-center align-items-center h-80">
+      <div class="col">
+        <p><span class="h2">Shopping Cart </span><span class="h4">({{ count }} item in your cart)</span></p>
+
+        <div class="card mb-4">
+          <div class="card-body p-5">
+
+            <div class="row align-items-center">
+                {% for i in all %}
+              <div class="col-md-3" style="margin-bottom: 40px">
+                <img src="{{ i.image.url }}"
+                  class="img-fluid" alt="Generic placeholder image">
+              </div>
+              <div class="col-md-3 d-flex justify-content-center">
+                <div>
+                  <p class="small text-muted mb-4 pb-2">Name</p>
+                  <p class="lead fw-normal mb-0">{{ i.name }}</p>
+                </div>
+              </div>
+              <div class="col-md-2 d-flex justify-content-center">
+                <div>
+                  <p class="small text-muted mb-4 pb-2">Quantity</p>
+                  <p class="lead fw-normal mb-0">1</p>
+                </div>
+              </div>
+              <div class="col-md-2 d-flex justify-content-center">
+                <div>
+                  <p class="small text-muted mb-4 pb-2">Price</p>
+                  <p class="lead fw-normal mb-0">{{ i.price }} ₸</p>
+                </div>
+              </div>
+                    <hr>
+                {% endfor %}
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card mb-5">
+          <div class="card-body p-4">
+
+            <div class="float-end">
+              <p class="mb-0 me-5 d-flex align-items-center">
+                <span class="small text-muted me-2">Order total:</span> <span
+                  class="lead fw-normal">{{ total }} ₸</span>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <a href="{% url 'home'  %}" class="btn btn-primary" style="margin-right: 50px">Continue shopping</a>
+            <a href="{% url 'home' %}" class="btn btn-primary">Pay</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
