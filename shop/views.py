@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from .form import MediaFileForm
-from .models import Product, Category, Comment
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout
+from django.shortcuts import render, get_object_or_404, redirect
+from .form import MediaFileForm, RegistrationForm, ProfileForm, LoginForm
+from .models import Product, Category, Comment, UserProfile
 
 
 def current_category(request, idx=1):
@@ -55,3 +57,56 @@ def current_product(request, idx=1):
     print(product)
     content = {"product": product, "comment": comment, "user": user, "categories": categories}
     return render(request, 'current_product.html', content)
+
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST,request.FILES)
+        if form.is_valid():
+
+            user = form.save()
+            profile = UserProfile.objects.create(user=user,image=form.cleaned_data['image'])
+            return redirect('login')  # Replace 'home' with the URL name of your home page
+
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'retistration.html', {'form': form})
+
+
+def login_view(request):
+    form = LoginForm()
+    if request.method == 'POST':
+            username = request.POST['username']
+            password = request.POST['password']
+
+            user = authenticate(request, username=username, password=password)
+            print(user)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.info(request, 'Email or Username is incorrect!')
+    else:
+        form = LoginForm()
+
+    return render(request, 'login.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')  # Redirect to login page after logout
+
+
+def profile_view(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=request.user.userprofile)
+
+    return render(request, 'profile.html', {'form': form})

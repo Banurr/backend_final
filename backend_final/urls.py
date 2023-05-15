@@ -21,7 +21,7 @@ from django.urls import path, include
 import backend_final
 import shop
 from shop import views
-from shop.views import upload_media
+from shop.views import upload_media, register, login_view, logout_view, profile_view
 from backend_final import views, settings
 from django.contrib import auth
 
@@ -32,8 +32,10 @@ urlpatterns = [
     path('category/<int:idx>', shop.views.current_category, name='currentc'),
     path('products/', include('shop.urls')),
     path('upload/', upload_media, name='upload_media'),
-    path('accounts/', include(('django.contrib.auth.urls', 'auth'), namespace='accounts')),
-    path('accounts/profile/', backend_final.views.profile, name='profile'),
+    path('register/', register, name='register'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('profile/', profile_view, name='profile'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
