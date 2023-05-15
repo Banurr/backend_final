@@ -14,9 +14,9 @@
                                                             <div class="card-block text-center text-white">
                                                                 <div class="m-b-25">
                                                                     {% if profile.image %}
-                                                                       <img style="width: 50%" src="{{ profile.image.url }}" class="img-radius" alt="User-Profile-Image">
+                                                                       <img style="width: 70%" src="{{ profile.image.url }}" class="img-radius" alt="User-Profile-Image">
                                                                     {% else %}
-                                                                        <img style="width: 50%" src="{% static 'img/account.png' %}" class="img-radius" alt="User-Profile-Image">
+                                                                        <img style="width: 70%" src="{% static 'img/account.png' %}" class="img-radius" alt="User-Profile-Image">
                                                                     {% endif %}
                                                                 </div>
                                                                 <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
@@ -42,7 +42,7 @@
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <h5 class="m-b-10 f-w-600">Account</h5>
-                                                                        <h5 class="text-muted f-w-400">{{ profilr.money }}</h5>
+                                                                        <h5 class="text-muted f-w-400">{{ profile.money }}</h5>
                                                                     </div>
                                                                 </div>
                                                                 <h6 style="margin-top : 20px" class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600 p-t-5" >Last login : {{ user.last_login }}</h6>
