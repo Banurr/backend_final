@@ -1,40 +1,10 @@
 {% extends 'base.html' %}
 
 {% block main %}
-
-    <form method="POST" action="">
-        {% csrf_token %}
-
-        <div class="div" id="front">
-            <div class="login">
-                <div class="circle"></div>
-                {% for m in messages %}
-                    <div id="messages">
-                        {{ m }}
-                    </div>
-                {% endfor %}
-                <h2 id="login-h2"> LOGIN </h2>
-                {{ form.errors }}
-                <label class="input">
-                    Username
-                    {{ form.username }}
-                </label>
-                <div id="password">
-                    <label class="input">
-                        Password
-                        {{ form.password }}
-                    </label>
-                </div>
-
-                <div id="for-btn" class="for-btn">
-                    <input class="btn" type="submit" value="LOGIN">
-                </div>
-
-            </div>
-            <div class="for-txt">
-                Not have an account?
-                <div class="decoration"> Sign up here </div>
-            </div>
-        </div>
-    </form>
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
 {% endblock %}

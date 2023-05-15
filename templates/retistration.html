@@ -4,12 +4,28 @@
   <h2>User Registration</h2>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    <label class="input">
+                    Username
+                    {{ form.username }}
+                </label>
+<label class="input">
+                    Email
+                    {{ form.email }}
+                </label>
+
+                <label class="input">
+                    Password
+                    {{ form.password1 }}
+                </label>
+
+                <label class="input">
+                    Confirm Password
+                    {{ form.password2 }}
+                </label>
+
+      {{ form.image }}
     <div class="form-group">
       <label for="id_image">Profile Picture</label>
-{#      {% if form.image.errors %}#}
-{#        <span class="text-danger">{{ form.image.errors }}</span>#}
-{#      {% endif %}#}
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
   </form>

@@ -11,11 +11,14 @@ class MediaFileForm(forms.ModelForm):
         fields = ('name', 'image')
 
 
-class RegistrationForm(forms.ModelForm):
+class RegistrationForm(UserCreationForm):
+
     class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ['username', 'email', 'password1', 'password2']
+
     image = forms.ImageField(required=False)
+
     # def clean_image(self):
     #     image = self.cleaned_data.get('image', False)
     #     if image:
@@ -23,17 +26,11 @@ class RegistrationForm(forms.ModelForm):
     #             raise forms.ValidationError('Image file size must be less than 5MB.')
     #     return image
 
+from django import forms
 
-class LoginForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password')
-        extra_kwargs = {"password": {'write_only': True}}
-
-        def create(self, validated_data):
-            user = User.objects.create_user(validated_data['phone'], None, validated_data['password'])
-
-            return user
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Username')
+    password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
 class ProfileForm(forms.ModelForm):
     class Meta:
