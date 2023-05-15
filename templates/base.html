@@ -39,8 +39,8 @@
                 </li>
             </ul>
 
-            <form class="form-check-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 form-control-lg" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-check-inline my-2 my-lg-0" method="get" action="{% url 'home' %}search/">
+                <input class="form-control mr-sm-2 form-control-lg"  name="poisk" type="search" placeholder="Search" aria-label="Search">
             </form>
         {% if user.is_authenticated %}
             <div style="margin-right: 10px" class="dropdown">
