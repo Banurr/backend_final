@@ -115,8 +115,8 @@ def profile_view(request):
     else:
         form = ProfileForm(instance=request.user.userprofile)
         profile = UserProfile.objects.get(user=user)
-
-        content = {"user" : user, "form":form , "profile":profile}
+        categories = Category.objects.all()
+        content = {"user" : user, "form":form , "profile":profile,"categories":categories}
     return render(request, 'profile.html', content)
 
 def book_search(request):
